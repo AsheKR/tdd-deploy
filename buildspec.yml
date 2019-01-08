@@ -3,15 +3,21 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - apt-get -y install curl
-      - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -; \
+      - apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+        libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+        xz-utils tk-dev; \
+        apt-get -y install apt-transport-https \
+        ca-certificates \
+        curl \
+        software-properties-common; \
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -; \
         apt-key fingerprint 0EBFCD88; \
         add-apt-repository \
         "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
         $$(lsb_release -cs) \
         stable"; \
-        sudo apt-get -y update; \
-        sudo apt-get -y install docker-ce
+        apt-get -y update; \
+        apt-get -y install docker-ce;
       - pip install awscli
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
