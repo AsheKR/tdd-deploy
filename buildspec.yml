@@ -14,7 +14,7 @@ phases:
       - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
       - apt-get -y update
       - apt-get -y install docker-ce
-      - service docker start
+      - service docker.io start
   pre_build:
     commands:
       - pip install awscli
