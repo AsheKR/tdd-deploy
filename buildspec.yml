@@ -17,7 +17,7 @@ phases:
         $(lsb_release -cs) \
         stable"
       - apt-get -y update
-      - apt-get install -y docker-ce
+      - apt-get -y install docker-ce
   pre_build:
     commands:
       - pip install awscli
