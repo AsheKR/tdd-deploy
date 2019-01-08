@@ -3,6 +3,14 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -; \
+        sudo apt-key fingerprint 0EBFCD88; \
+        sudo add-apt-repository \
+        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+        $$(lsb_release -cs) \
+        stable"; \
+        sudo apt-get -y update; \
+        sudo apt-get -y install docker-ce
       - pip install awscli
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
