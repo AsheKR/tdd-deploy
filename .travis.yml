@@ -20,5 +20,5 @@ script:
 services:
 - docker
 after_success:
-- bash /bin/ecr_credentials.sh
+- bash bin/ecr_credentials.sh
 - bash bin/docker_push.sh
