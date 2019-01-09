@@ -5,7 +5,8 @@ install:
   - pip install pipenv
   - pipenv install --system --ignore-pipfile
 script:
-  - python ./superlists/manage.py test
+  - python ./superlists/manage.py test lists
+  - python ./superlists/manage.py test functional_tests
   
 sudo: required
 services:
