@@ -6,7 +6,7 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
 
 # This is needed to login on AWS and push the image on ECR
 # Change it accordingly to your docker repo
-pip install --user awscli
+pip install awscli
 export PATH=$PATH:$HOME/.local/bin
 eval $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
 
