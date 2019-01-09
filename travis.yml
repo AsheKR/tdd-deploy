@@ -1,8 +1,8 @@
 language: python
-  python:
-    - 3.6.6
-  install:
-    - pip install -y pipenv
-    - pipenv install --system --ignore-pipfile
-  script:
-    - python ./superlists/manage.py test
+python:
+  - 3.6.6
+install:
+  - pip install -y pipenv
+  - pipenv install --system --ignore-pipfile
+script:
+  - python ./superlists/manage.py test
