@@ -6,3 +6,9 @@ install:
   - pipenv install --system --ignore-pipfile
 script:
   - python ./superlists/manage.py test
+  
+sudo: required
+services:
+- docker
+after_success:
+- bin/docker_push.sh
