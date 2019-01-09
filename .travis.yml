@@ -21,4 +21,7 @@ services:
 - docker
 after_success:
 - bash bin/ecr_credentials.sh
+- ls -la ~/.aws/
+- cat ~/.aws/config
+- cat ~/.aws/credentials
 - bash bin/docker_push.sh
