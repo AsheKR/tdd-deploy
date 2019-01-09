@@ -1,3 +1,5 @@
+sudo: required
+
 language: python
 python:
   - 3.6.6
@@ -5,23 +7,26 @@ python:
 addons:
   firefox: latest
 
-sudo: required
+services:
+- docker
+
 install:
+#  for test firefox browser
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
   - tar -xvzf geckodriver*
   - chmod +x geckodriver
   - sudo mv geckodriver /usr/local/bin/
+#  for awscli, ecs-deploy
   - pip install pipenv
-  - pipenv install --system --ignore-pipfile
+  - pipenv install awscli --system --ignore-pipfile
+  - sudo apt-get install jq
+  - curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee /usr/bin/ecs-deploy
+  - sudo chmod +x /usr/bin/ecs-deploy
 script:
   - python ./superlists/manage.py test lists
   - python ./superlists/manage.py test functional_tests
-  
-services:
-- docker
+
 after_success:
 - bash bin/ecr_credentials.sh
-- ls -la ~/.aws/
-- cat ~/.aws/config
-- cat ~/.aws/credentials
 - bash bin/docker_push.sh
+- bash bin/ecs_deploy.sh
