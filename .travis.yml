@@ -1,6 +1,8 @@
 language: python
 python:
   - 3.6.6
+
+sudo: required
 install:
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
   - tar -xvzf geckodriver*
@@ -12,7 +14,6 @@ script:
   - python ./superlists/manage.py test lists
   - python ./superlists/manage.py test functional_tests
   
-sudo: required
 services:
 - docker
 after_success:
