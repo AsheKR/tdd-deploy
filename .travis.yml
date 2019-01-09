@@ -29,4 +29,4 @@ script:
 after_success:
 - bash bin/ecr_credentials.sh
 - bash bin/docker_push.sh
-- bash bin/ecs_deploy.sh
+- ecs-deploy -c $CLUSTER_NAME -n $SERVICENAME -i $REMOTE_IMAGE_URL:latest
