@@ -2,12 +2,14 @@ language: python
 python:
   - 3.6.6
 
+addons:
+  firefox: latest
+
 sudo: required
 install:
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
   - tar -xvzf geckodriver*
   - chmod +x geckodriver
-  - ls -la
   - sudo mv geckodriver /usr/local/bin/
   - pip install pipenv
   - pipenv install --system --ignore-pipfile
