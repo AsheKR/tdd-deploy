@@ -19,7 +19,6 @@ class ItemValidationTest(FunctionalTest):
         ))
 
         # She tries again with some text for the item, which now works
-        self.fail('finish this test!')
 
         # Perversely, she now decides to submit a second blank list item
 
